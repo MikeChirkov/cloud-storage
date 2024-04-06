@@ -1,0 +1,31 @@
+version: '3.5'
+
+services:
+  server:
+    build: ./
+    container_name: 'cloud-storage-server'
+    image: 'cloud-storage:0.0.1'
+    ports:
+      - '8085:8085'
+    depends_on:
+      - database
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/netology
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+
+  database:
+    container_name: 'cloud-storage-db'
+    image: postgres
+    environment:
+      POSTGRES_DB: "netology"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+volumes:
+  postgres:
