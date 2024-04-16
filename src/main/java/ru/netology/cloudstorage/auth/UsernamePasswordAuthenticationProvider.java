@@ -1,4 +1,4 @@
-package ru.netology.cloudstorage.config;
+package ru.netology.cloudstorage.auth;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -7,6 +7,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import ru.netology.cloudstorage.dto.UserDetailsImpl;
+import ru.netology.cloudstorage.dto.UsernamePasswordAuthentication;
 import ru.netology.cloudstorage.service.UserDetailsServiceImpl;
 
 @RequiredArgsConstructor

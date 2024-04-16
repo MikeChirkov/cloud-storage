@@ -1,4 +1,4 @@
-package ru.netology.cloudstorage.config;
+package ru.netology.cloudstorage.auth;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

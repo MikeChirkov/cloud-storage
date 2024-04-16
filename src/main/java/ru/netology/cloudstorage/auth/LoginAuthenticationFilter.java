@@ -1,4 +1,4 @@
-package ru.netology.cloudstorage.config;
+package ru.netology.cloudstorage.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
@@ -15,6 +15,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import ru.netology.cloudstorage.dto.ExceptionResponse;
 import ru.netology.cloudstorage.dto.LoginRequest;
 import ru.netology.cloudstorage.dto.LoginResponse;
+import ru.netology.cloudstorage.dto.UsernamePasswordAuthentication;
 import ru.netology.cloudstorage.repository.AuthTokenInMemoryRepository;
 import ru.netology.cloudstorage.service.AuthTokenService;
 

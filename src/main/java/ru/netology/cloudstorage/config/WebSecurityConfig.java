@@ -17,6 +17,10 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import ru.netology.cloudstorage.auth.AuthTokenAuthenticationFilter;
+import ru.netology.cloudstorage.auth.AuthenticationCustomEntryPoint;
+import ru.netology.cloudstorage.auth.LoginAuthenticationFilter;
+import ru.netology.cloudstorage.auth.LogoutSuccessCustomHandler;
 
 import java.util.List;
 

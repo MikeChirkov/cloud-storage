@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,9 +20,8 @@ import ru.netology.cloudstorage.service.StorageService;
 import java.io.IOException;
 import java.util.List;
 
-import static ru.netology.cloudstorage.util.Constant.AUTH_HEADER;
-import static ru.netology.cloudstorage.util.Constant.FILENAME_HEADER;
-import static ru.netology.cloudstorage.util.Constant.LIMIT_HEADER;
+import static ru.netology.cloudstorage.util.Constant.FILENAME_PARAM;
+import static ru.netology.cloudstorage.util.Constant.LIMIT_PARAM;
 
 @RequiredArgsConstructor
 @RestController
@@ -32,38 +30,33 @@ public class StorageController {
     private final StorageService storageService;
 
     @GetMapping("/list")
-    public List<FileListResponse> getAllFiles(@RequestHeader(AUTH_HEADER) String authToken,
-                                              @RequestParam(LIMIT_HEADER) Integer limit) {
-        return storageService.getFileList(authToken, limit);
+    public List<FileListResponse> getAllFiles(@RequestParam(LIMIT_PARAM) Integer limit) {
+        return storageService.getFileList(limit);
     }
 
     @GetMapping("/file")
-    public ResponseEntity<Resource> downloadFile(@RequestHeader(AUTH_HEADER) String authToken,
-                                                 @RequestParam(FILENAME_HEADER) String filename) {
-        byte[] file = storageService.downloadFile(authToken, filename);
+    public ResponseEntity<Resource> downloadFile(@RequestParam(FILENAME_PARAM) String filename) {
+        byte[] file = storageService.downloadFile(filename);
         return ResponseEntity.ok().body(new ByteArrayResource(file));
     }
 
     @PostMapping("/file")
-    public ResponseEntity<?> uploadFile(@RequestHeader(AUTH_HEADER) String authToken,
-                                        @RequestParam(FILENAME_HEADER) String filename,
+    public ResponseEntity<?> uploadFile(@RequestParam(FILENAME_PARAM) String filename,
                                         MultipartFile file) throws IOException {
-        storageService.uploadFile(authToken, filename, file);
+        storageService.uploadFile(filename, file);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @DeleteMapping("/file")
-    public ResponseEntity<?> deleteFile(@RequestHeader(AUTH_HEADER) String authToken,
-                                        @RequestParam(FILENAME_HEADER) String filename) {
-        storageService.deleteFile(authToken, filename);
+    public ResponseEntity<?> deleteFile(@RequestParam(FILENAME_PARAM) String filename) {
+        storageService.deleteFile(filename);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @PutMapping(value = "/file")
-    public ResponseEntity<?> editFileName(@RequestHeader(AUTH_HEADER) String authToken,
-                                          @RequestParam(FILENAME_HEADER) String filename,
+    public ResponseEntity<?> editFileName(@RequestParam(FILENAME_PARAM) String filename,
                                           @RequestBody EditFileNameRequest editFileNameRequest) {
-        storageService.editFileName(authToken, filename, editFileNameRequest);
+        storageService.editFileName(filename, editFileNameRequest);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 

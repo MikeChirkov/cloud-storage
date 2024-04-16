@@ -48,11 +48,11 @@ public class AuthTokenService {
                 .compact();
     }
 
-    public Claims getClaims(String jwt) {
+    public Claims getClaims(String authToken) {
         return Jwts.parserBuilder()
                 .setSigningKey(generatedSecretKey())
                 .build()
-                .parseClaimsJws(jwt)
+                .parseClaimsJws(authToken)
                 .getBody();
     }
 

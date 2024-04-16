@@ -1,4 +1,4 @@
-package ru.netology.cloudstorage.config;
+package ru.netology.cloudstorage.auth;
 
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import ru.netology.cloudstorage.dto.UsernamePasswordAuthentication;
 import ru.netology.cloudstorage.service.AuthTokenService;
 
 import java.io.IOException;

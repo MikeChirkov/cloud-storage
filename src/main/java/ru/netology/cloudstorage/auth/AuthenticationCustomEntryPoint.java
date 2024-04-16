@@ -1,4 +1,4 @@
-package ru.netology.cloudstorage.config;
+package ru.netology.cloudstorage.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
